@@ -1,7 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, Toplevel
-
-
+from tkinter import messagebox
 
 def calculate_protein():
     try:
@@ -18,8 +16,12 @@ def calculate_protein():
 
         if eggs == 0 and bread > 0:
             result_label.config(text="Roughly %0.1f grams of protein.\nBut that ain't an omelet, it's toast with ambition." % protein_total)
+
+        elif eggs == 0 and bread == 0:
+            result_label.config(text="Good luck biting air.")
         else:
             result_label.config(text="The omelet has roughly %0.1f grams of protein." % protein_total)
+            
 
     except ValueError:
         messagebox.showerror("Invalid input", "Enter valid numbers for both eggs and bread.")
@@ -45,13 +47,15 @@ calculate_button = tk.Button(text="Calculate Protein", command=calculate_protein
 
 
 
-# Add widgets to the window
-eggs_label.pack()
-eggs_entry.pack()
-bread_label.pack()
-bread_entry.pack()
-calculate_button.pack()
-result_label.pack()
+# Add widgets to the window with padding
+eggs_label.pack(pady=(20, 5))
+eggs_entry.pack(pady=(0, 10))
+bread_label.pack(pady=(10, 5))
+bread_entry.pack(pady=(0, 10))
+calculate_button.pack(pady=(20, 10))
+result_label.pack(pady=(10, 10))
+result_label.config(justify="center")
+
+
 # Run the main loop
 window.mainloop()
- 
